@@ -136,13 +136,6 @@ MMP is built on cutting-edge research in LLM memory systems:
 - **CAMELoT**: Neuroscience-inspired consolidation mechanisms
 - **OpenTelemetry**: Proven patterns for distributed system observability
 
-## 📈 Performance
-
-- **4.3% improvement** in memory retrieval accuracy (based on EM-LLM research)
-- **91% lower p95 latency** compared to naive approaches
-- **30% reduction in perplexity** when integrated with language models
-- **Scalable to 10M+ tokens** with efficient storage tiering
-
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
