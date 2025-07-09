@@ -1,0 +1,52 @@
+{
+  "name": "model-memory-protocol",
+  "version": "1.0.0",
+  "description": "Model Memory Protocol (MMP) - A comprehensive memory protocol for LLMs based on MCP and OpenTelemetry patterns",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "mmp",
+    "model-memory-protocol",
+    "llm",
+    "memory",
+    "protocol",
+    "mcp",
+    "opentelemetry",
+    "ai",
+    "agents"
+  ],
+  "author": "Model Memory Protocol Team",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "ws": "^8.14.2",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "jsonrpc-lite": "^2.2.0",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "@types/ws": "^8.5.0",
+    "@types/express": "^4.17.0",
+    "@types/cors": "^2.8.0",
+    "@types/jest": "^29.5.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0"
+  }
+}
