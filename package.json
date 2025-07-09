@@ -31,8 +31,7 @@
     "express": "^4.18.2",
     "cors": "^2.8.5",
     "helmet": "^7.0.0",
-    "jsonrpc-lite": "^2.2.0",
-    "crypto": "^1.0.1"
+    "jsonrpc-lite": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

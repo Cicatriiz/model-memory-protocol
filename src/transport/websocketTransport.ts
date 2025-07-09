@@ -57,7 +57,7 @@ export class WebSocketTransport extends EventEmitter implements Transport {
           try {
             const message = JSON.parse(data.toString()) as ProtocolMessage;
             this.emit('message', message);
-          } catch (error) {
+          } catch (error: any) {
             this.emit('error', new TransportError(
               `Failed to parse message: ${error.message}`,
               { data: data.toString() }
@@ -91,7 +91,7 @@ export class WebSocketTransport extends EventEmitter implements Transport {
           this.emit('pong');
         });
 
-      } catch (error) {
+      } catch (error: any) {
         reject(new TransportError(
           `Failed to create WebSocket connection: ${error.message}`,
           error
@@ -141,7 +141,7 @@ export class WebSocketTransport extends EventEmitter implements Transport {
       this.ws.send(serialized);
       
       this.emit('messageSent', message);
-    } catch (error) {
+    } catch (error: any) {
       throw new TransportError(
         `Failed to send message: ${error.message}`,
         error
@@ -280,7 +280,7 @@ export class WebSocketServerTransport extends EventEmitter implements Transport 
             try {
               const message = JSON.parse(data.toString()) as ProtocolMessage;
               this.emit('message', message, clientId);
-            } catch (error) {
+            } catch (error: any) {
               this.emit('error', new TransportError(
                 `Failed to parse message from client ${clientId}: ${error.message}`,
                 { clientId, data: data.toString() }
@@ -314,7 +314,7 @@ export class WebSocketServerTransport extends EventEmitter implements Transport 
           ));
         });
 
-      } catch (error) {
+      } catch (error: any) {
         reject(new TransportError(
           `Failed to create WebSocket server: ${error.message}`,
           error

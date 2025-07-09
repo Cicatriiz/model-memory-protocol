@@ -54,7 +54,7 @@ export class MemoryProtocol extends EventEmitter {
       
       this.initialized = true;
       this.emit('initialized');
-    } catch (error) {
+    } catch (error: any) {
       throw new MemoryProtocolError(
         `Failed to initialize protocol: ${error.message}`,
         500,
@@ -261,7 +261,7 @@ export class MemoryProtocol extends EventEmitter {
         default:
           throw new MemoryProtocolError(`Unknown method: ${message.method}`, 400);
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         jsonrpc: '2.0',
         id: message.id,

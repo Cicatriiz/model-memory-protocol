@@ -4,9 +4,9 @@
  * memory storage, retrieval, and updates.
  */
 
-import { MemoryProtocol, MemoryType, StorageTier } from '../core/types.js';
+import { MemoryType, StorageTier, MemoryProtocolError } from '../core/types.js';
+import { MemoryProtocol } from '../core/memoryProtocol.js';
 import { InMemoryBackend } from '../storage/inMemoryBackend.js';
-import { MemoryProtocolError } from '../core/types.js';
 
 async function basicUsageExample() {
   console.log('🚀 Model Memory Protocol - Basic Usage Example\n');
@@ -24,18 +24,18 @@ async function basicUsageExample() {
       }
     ],
     security: {
-      authentication: { type: 'jwt', options: {} },
+      authentication: { type: 'jwt' as const, options: {} },
       authorization: { enabled: false, rules: [] },
       encryption: { enabled: false, algorithm: 'aes-256-gcm', keyRotation: false }
     },
     processing: {
       embedding: { model: 'text-embedding-ada-002', dimensions: 1536, batchSize: 100 },
-      chunking: { strategy: 'fixed', size: 1000, overlap: 200 },
+      chunking: { strategy: 'fixed' as const, size: 1000, overlap: 200 },
       deduplication: { enabled: true, threshold: 0.9 }
     },
     consolidation: {
       enabled: false,
-      strategy: 'hybrid',
+      strategy: 'hybrid' as const,
       interval: 3600,
       batchSize: 100,
       retention: {
@@ -131,7 +131,7 @@ async function basicUsageExample() {
       sessionId
     );
     console.log(`✅ Found ${programmingResults.memories.length} memories about programming preferences`);
-    programmingResults.memories.forEach((memory, index) => {
+    programmingResults.memories.forEach((memory: any, index: number) => {
       console.log(`   ${index + 1}. ${memory.content.text.substring(0, 50)}...`);
     });
 
@@ -169,9 +169,19 @@ async function basicUsageExample() {
     await protocol.update(
       semanticMemoryId,
       {
+        content: {
+          text: 'The user prefers TypeScript over JavaScript for web development',
+          tags: ['preference', 'programming', 'typescript', 'javascript', 'updated']
+        },
         metadata: {
           importance: 0.9,
-          tags: ['preference', 'programming', 'typescript', 'javascript', 'updated']
+          source: 'user_conversation',
+          confidence: 0.9,
+          accessCount: 1,
+          lastAccessed: new Date(),
+          created: new Date(),
+          updated: new Date(),
+          storageTier: StorageTier.MAIN_CONTEXT
         }
       },
       sessionId

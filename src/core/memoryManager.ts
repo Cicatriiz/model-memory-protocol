@@ -62,8 +62,7 @@ export class MemoryManager {
   async collect(): Promise<MemoryEvent[]> {
     const collectedEvents: MemoryEvent[] = [];
     for (const collector of this.collectors) {
-      const events = await collector.collect(collectedEvents);
-      collectedEvents.push(...events);
+      await collector.collect(collectedEvents);
     }
     return collectedEvents;
   }
